@@ -47,6 +47,7 @@ jobs:
 
       - name: Check for changes
         id: check_changes
+        continue-on-error: true # `git diff` returns non-zero on purpose
         run: |
           git diff --quiet
           if [[ $? -eq 1 ]]; then
