@@ -45,27 +45,19 @@ jobs:
         run: |
           python3 ./script/get_total_active_users.py
 
-      - name: Check for changes
+      - name: Commit user count change
         id: check_changes
         continue-on-error: true # `git diff` returns non-zero on purpose
         run: |
           git diff --quiet
           if [[ $? -eq 1 ]]; then
-            echo "::set-output name=changed::true"
-          else
-            echo "::set-output name=changed::false"
+            git config user.name 'github-actions[bot]'
+            git config user.email 'keyz+github-actions[bot]@users.noreply.github.com'
+            git add .
+            git commit -m "Update user count"
           fi
 
-      - name: Commit changes
-        if: steps.check_changes.outputs.changed == 'true'
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'keyz+github-actions[bot]@users.noreply.github.com'
-          git add .
-          git commit -m "Update user count"
-
       - name: Push changes
-        if: steps.check_changes.outputs.changed == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
