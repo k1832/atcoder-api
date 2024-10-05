@@ -29,16 +29,20 @@ def main():
         msg = f"Failed to get the number of active users in {algo_last_page_url}"
         raise RuntimeError(msg)
 
+    # GitHub Pages does not allow to specify the directory to deploy
+    # except the "docs" directory
     """
-    - script
-        - {this file}
+    - docs
+        - script
+            - {this file}
     - api
         - v1
             - {json file}
     """
     script_dir_path = os.path.abspath(os.path.dirname(__file__))
     root_dir_path = os.path.dirname(script_dir_path)
-    api_dir_path = os.path.join(root_dir_path, "api")
+    docs_dir_path = os.path.join(root_dir_path, "docs")
+    api_dir_path = os.path.join(docs_dir_path, "api")
     api_v1_dir_path = os.path.join(api_dir_path, "v1")
     api_json_name = "total-active-users.json"
 
