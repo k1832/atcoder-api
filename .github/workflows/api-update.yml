@@ -47,8 +47,8 @@ jobs:
 
       - name: Commit user count change
         id: check_changes
-        continue-on-error: true # `git diff` returns non-zero on purpose
         run: |
+          set +e
           git diff --quiet
           if [[ $? -eq 1 ]]; then
             git config user.name 'github-actions[bot]'
