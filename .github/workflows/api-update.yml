@@ -1,8 +1,9 @@
 name: Update User Count
 
 on:
+  # Runs every day at 5:17 pm in UTC (2:17 am in Japan)
   schedule:
-    - cron: '0 0 * * *' # Runs every day at midnight
+    - cron: '17 17 * * *'
 
   # Enable manual triggers
   workflow_dispatch:
