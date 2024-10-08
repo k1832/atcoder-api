@@ -55,7 +55,9 @@ jobs:
             git config user.name 'github-actions[bot]'
             git config user.email 'keyz+github-actions[bot]@users.noreply.github.com'
             git add .
-            git commit -m "Update user count"
+            git commit -m "[Commit by bot] Update user count"
+          else
+            echo "The number of total active users hasn't changed."
           fi
 
       - name: Push changes
