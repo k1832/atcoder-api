@@ -52,6 +52,7 @@ def main():
 
     with open(os.path.join(api_v1_dir_path, api_json_name), 'w', encoding='utf-8') as f:
         json.dump({"val": num_active_users}, f)
+        f.write("\n")
 
 if __name__ == "__main__":
     main()
