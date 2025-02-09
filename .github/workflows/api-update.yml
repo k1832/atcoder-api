@@ -44,7 +44,7 @@ jobs:
 
       - name: Scrape user count
         run: |
-          python3 ./script/get_total_active_users.py
+          python3 ./script/update-total-active-users.py
 
       - name: Commit user count change
         id: check_changes
